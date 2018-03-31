@@ -49,7 +49,7 @@ public class Alarm extends AppCompatActivity {
             client = (HttpURLConnection) url.openConnection();
             client.setRequestMethod("POST");
             // Get properties to send
-            client.setRequestProperty("Key", "value"); // Replace with key and value
+            client.setRequestProperty("Content-Type", "application/json");
             client.setDoInput(true);
 
             // Write stream
