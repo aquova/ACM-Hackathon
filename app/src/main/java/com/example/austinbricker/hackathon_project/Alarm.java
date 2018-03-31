@@ -1,5 +1,6 @@
 package com.example.austinbricker.hackathon_project;
 
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +15,7 @@ import java.net.SocketTimeoutException;
 import java.net.URL;
 
 public class Alarm extends AppCompatActivity {
-    private String getUserData(boolean police, boolean fire, boolean medical) {
+    public String getUserData(boolean police, boolean fire, boolean medical) {
         String userData = "{";
         userData += "\"id\": \"507f191e810c19729de860ea\",";
         userData += "\"status\": \"ACTIVE\",";
@@ -39,40 +40,51 @@ public class Alarm extends AppCompatActivity {
     }
 
     public void callAlarm(boolean police, boolean fire, boolean medical) {
-        HttpURLConnection client = null;
+        final String userData = getUserData(police, fire, medical);
 
-        try {
-            String userData = getUserData(police, fire, medical);
 
-            // Open connection to alarm API
-            URL url = new URL("https://api.safetrek.io/v1/alarms");
-            client = (HttpURLConnection) url.openConnection();
-            client.setRequestMethod("POST");
-            // Get properties to send
-            client.setRequestProperty("Content-Type", "application/json");
-            client.setDoInput(true);
 
-            // Write stream
-            OutputStream outputPost = new BufferedOutputStream(client.getOutputStream());
-            outputPost.write(userData.getBytes());
-            outputPost.flush();
-            outputPost.close();
-        }
-        catch (MalformedURLException error) {
-            // Incorrect URL
-        }
-        catch (SocketTimeoutException error) {
-            // URL access timeout
-        }
-        catch (IOException error) {
-            // IO Errors
-        }
-        // After everything is done, if client still exists, disconnect
-        finally {
-            if (client != null) {
-                client.disconnect();
+        MyAsyncTask sendData = new MyAsyncTask() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                HttpURLConnection client = null;
+
+                try {
+                    // Open connection to alarm API
+                    URL url = new URL("https://api.safetrek.io/v1/alarms");
+                    client = (HttpURLConnection) url.openConnection();
+                    client.setRequestMethod("POST");
+                    // Get properties to send
+                    client.setRequestProperty("Content-Type", "application/json");
+                    client.setDoInput(true);
+
+                    // Write stream
+                    OutputStream outputPost = new BufferedOutputStream(client.getOutputStream());
+                    outputPost.write(userData.getBytes());
+                    outputPost.flush();
+                    outputPost.close();
+
+
+                }
+                catch (MalformedURLException error) {
+                    // Incorrect URL
+                }
+                catch (SocketTimeoutException error) {
+                    // URL access timeout
+                }
+                catch (IOException error) {
+                    // IO Error
+                }
+                // After everything is done, if client still exists, disconnect
+                finally {
+                    if (client != null) {
+                        client.disconnect();
+                    }
+                }
+                return null;
             }
-        }
+        };
+        sendData.execute();
     }
 
     @Override
@@ -88,4 +100,13 @@ public class Alarm extends AppCompatActivity {
             }
         });
     }
+}
+
+abstract class MyAsyncTask extends AsyncTask<Void, Void, Void>
+{
+    @Override
+    protected void onPostExecute(Void result) {
+
+    }
+
 }

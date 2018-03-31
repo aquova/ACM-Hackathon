@@ -70,6 +70,8 @@ public class Voice extends AppCompatActivity {
 
             // Set text and include information parsed
             speechText.setText(spokenText + "\n police: " + police + "\n fire: " + fire + "\n medical: " + medical);
+            Alarm a = new Alarm();
+            a.callAlarm(police, fire, medical);
 
 
         }
