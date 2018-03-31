@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         Button goToAlarm = findViewById(R.id.alarmButton);
         goToAlarm.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent myIntent = new Intent(MainActivity.this, Voice.class);
+                Intent myIntent = new Intent(MainActivity.this, Alarm.class);
                 startActivityForResult(myIntent, 0);
             }
         });
