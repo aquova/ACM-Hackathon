@@ -7,33 +7,34 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/alarmButton"
         android:layout_width="180dp"
         android:layout_height="84dp"
-        android:layout_marginBottom="127dp"
+        android:layout_marginBottom="104dp"
+        android:layout_marginEnd="102dp"
+        android:layout_marginLeft="102dp"
+        android:layout_marginRight="102dp"
+        android:layout_marginStart="102dp"
+        android:text="@string/alarm_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/voiceButton"
+        android:layout_width="180dp"
+        android:layout_height="84dp"
+        android:layout_marginBottom="142dp"
         android:layout_marginEnd="102dp"
         android:layout_marginLeft="102dp"
         android:layout_marginRight="102dp"
         android:layout_marginStart="102dp"
         android:layout_marginTop="106dp"
-        android:text="@string/alarm_button"
-        app:layout_constraintBottom_toTopOf="@+id/toggleButton"
+        android:text="@string/enable_voice_button"
+        app:layout_constraintBottom_toTopOf="@+id/alarmButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ToggleButton
-        android:id="@+id/toggleButton"
-        android:layout_width="175dp"
-        android:layout_height="90dp"
-        android:layout_marginBottom="104dp"
-        android:layout_marginEnd="104dp"
-        android:layout_marginLeft="105dp"
-        android:layout_marginRight="104dp"
-        android:layout_marginStart="105dp"
-        android:textOff="@string/enable_voice_button"
-        android:textOn="@string/disable_voice_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>
