@@ -4,4 +4,7 @@
     <string name="enable_voice_button">Enable Voice Detection</string>
     <string name="disable_voice_button">Disable Voice Detection</string>
     <string name="trigger_alarm_button">Call for help</string>
+    <string name="police">police</string>
+    <string name="fire">fire</string>
+    <string name="medical">medical</string>
 </resources>
