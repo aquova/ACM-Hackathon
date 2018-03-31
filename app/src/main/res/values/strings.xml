@@ -3,4 +3,7 @@
     <string name="alarm_button">Send Alarm</string>
     <string name="enable_voice_button">Enable Voice Detection</string>
     <string name="disable_voice_button">Disable Voice Detection</string>
+    <string name="police">police</string>
+    <string name="fire">fire</string>
+    <string name="medical">medical</string>
 </resources>
